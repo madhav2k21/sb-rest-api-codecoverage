@@ -54,7 +54,6 @@ public class UserControllerTest {
 		user = Users.builder().id(1001).name("madhav").location("Hyderabad").build();
 	}
 	
-	
 	@DisplayName("testSaveUser_fix")
 	@Test
 	public void givenUser_whenSaveUser_thenReturnUser_fix() throws JsonProcessingException, Exception {

@@ -25,7 +25,7 @@ import com.techleads.app.model.Users;
 import com.techleads.app.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+public class UserServiceTest {
 	@Mock
 	private UserRepository userRepository;
 	@InjectMocks
