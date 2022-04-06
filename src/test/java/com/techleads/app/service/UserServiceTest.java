@@ -37,7 +37,7 @@ class UserServiceTest {
 	public void setup() {
 //		userRepository=Mockito.mock(UserRepository.class);
 //		userService= new UserService(userRepository);
-		user = Users.builder().id(1001).name("dill").location("USA").build();
+		user = Users.builder().id(1001).name("madhav").location("Hyderabad").build();
 	}
 
 	@DisplayName("saveEmployee")
@@ -56,6 +56,8 @@ class UserServiceTest {
 		System.out.println(userRepository);
 		System.out.println(userService);
 		System.out.println(saveUser);
+		verify(userRepository, times(1)).findByName(user.getName());
+		verify(userRepository, times(1)).save(user);
 	}
 
 	@DisplayName("saveUserWithException")
@@ -79,7 +81,7 @@ class UserServiceTest {
 	public void givenUsers_whenFindAll_thenReturnUsers() {
 
 		// given
-		Users u1 = Users.builder().id(1002).name("madhav").location("Hyderabad").build();
+		Users u1 = Users.builder().id(1002).name("dill").location("USA").build();
 		given(userRepository.findAll()).willReturn(List.of(user, u1));
 		// when
 		List<Users> users = userService.findAllUsers();
@@ -93,7 +95,7 @@ class UserServiceTest {
 	public void givenEmptyUsers_whenFindAll_thenReturnEmptyList() {
 
 		// given
-		Users u1 = Users.builder().id(1002).name("madhav").location("Hyderabad").build();
+		Users u1 = Users.builder().id(1002).name("dill").location("USA").build();
 		given(userRepository.findAll()).willReturn(Collections.emptyList());
 		// when
 		List<Users> users = userService.findAllUsers();
@@ -114,45 +116,8 @@ class UserServiceTest {
 		// verify
 		assertThat(user).isNotNull();
 		assertThat(user.getId()).isEqualTo(1001);
-		assertThat(user.getName()).isEqualTo("dill");
-		assertThat(user.getLocation()).isEqualTo("USA");
-	}
-
-	@DisplayName("updateUserById")
-	@Test
-	public void givenId_whenUpdateUserById_thenReturnUser() {
-
-		// given
-		given(userRepository.save(user)).willReturn(user);
-
-		user.setName("dillesh");
-		user.setLocation("PA USA");
-		given(userRepository.findById(user.getId())).willReturn(Optional.of(user));
-		// when
-		String updateUserById = userService.updateUserById(user, user.getId());
-		// verify
-		assertThat(user).isNotNull();
-		assertThat(updateUserById).isEqualTo("User is Updated successfully with Id: " + user.getId());
-		assertThat(user.getName()).isEqualTo("dillesh");
-		assertThat(user.getLocation()).isEqualTo("PA USA");
-	}
-
-	@DisplayName("updateUserByIdNegativeCase")
-	@Test
-	public void givenId_whenUpdateUserById_thenFailureMessage() {
-
-		// given
-//		given(userRepository.save(user)).willReturn(user);
-
-		user.setName("dillesh");
-		user.setLocation("PA USA");
-		given(userRepository.findById(user.getId())).willReturn(Optional.empty());
-		// when
-		String updateUserById = userService.updateUserById(user, user.getId());
-		// verify
-		assertThat(updateUserById).isEqualTo("Failed to Update the user details");
-		verify(userRepository, never()).save(user);
-
+		assertThat(user.getName()).isEqualTo("madhav");
+		assertThat(user.getLocation()).isEqualTo("Hyderabad");
 	}
 
 	@DisplayName("DeleteUserById")
