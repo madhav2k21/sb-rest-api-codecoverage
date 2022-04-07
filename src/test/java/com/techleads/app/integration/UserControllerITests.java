@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 import java.util.Optional;
 
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,6 +61,7 @@ public class UserControllerITests {
 		// given -pre condition or setup
 		user = Users.builder()
 				.name("madhav").location("Hyderabad").build();
+		
 		// when -behavior that we are going to test
 
 		ResultActions response = mockMvc.perform(
@@ -70,7 +72,8 @@ public class UserControllerITests {
 
 				.andExpect(jsonPath("$.name", is(user.getName())))
 				.andExpect(jsonPath("$.location", is(user.getLocation())))
-//				.andExpect(jsonPath("$.id", is(107)))
+//				.andExpect(jsonPath("$.id", is(user.getId())))
+//				.andExpect(jsonPath("$.id", is(107)));
 				;
 	}
 	
