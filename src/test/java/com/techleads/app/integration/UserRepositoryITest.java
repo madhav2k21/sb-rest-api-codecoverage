@@ -1,4 +1,4 @@
-package com.techleads.app.repository;
+package com.techleads.app.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,12 +9,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.techleads.app.model.Users;
+import com.techleads.app.repository.UserRepository;
 
 @DataJpaTest //by default it uses in memory database
-public class UserRepositoryTest {
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//to disable in memory database
+public class UserRepositoryITest {
 
 	@Autowired
 	private UserRepository respository;
