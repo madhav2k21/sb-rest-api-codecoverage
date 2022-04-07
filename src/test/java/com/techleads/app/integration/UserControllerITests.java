@@ -132,7 +132,7 @@ public class UserControllerITests {
 		user = Users.builder()
 				.name("madhav").location("Hyderabad").build();
 		userRepository.save(user);
-		Integer id = 107;
+		Integer id = 1;
 		// when -behavior that we are going to test
 		ResultActions perform = mockMvc.perform(delete("/users/{id}", id));
 		//then

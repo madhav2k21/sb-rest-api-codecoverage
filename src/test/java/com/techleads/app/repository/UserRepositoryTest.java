@@ -9,11 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.techleads.app.model.Users;
 
 @DataJpaTest //by default it uses in memory database
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//to disable in memory database
 public class UserRepositoryTest {
 
 	@Autowired
@@ -51,7 +53,7 @@ public class UserRepositoryTest {
 
 		// then -verify the result
 		assertThat(users).isNotNull();
-		assertThat(users.size()).isEqualTo(9);
+		assertThat(users.size()).isEqualTo(3);
 
 	}
 
@@ -76,7 +78,8 @@ public class UserRepositoryTest {
 	@Test
 	public void givenUser_whenName_thenUser() {
 		// given -precondition or setup
-		String name = "Madhav";
+		respository.save(user);
+		String name = "madhav";
 		// when - behavior that we are going to test or action
 		Optional<Users> findByName = respository.findByName(name);
 		// then - verify the result
