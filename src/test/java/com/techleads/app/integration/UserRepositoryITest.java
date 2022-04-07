@@ -16,7 +16,7 @@ import com.techleads.app.model.Users;
 import com.techleads.app.repository.UserRepository;
 
 @DataJpaTest //by default it uses in memory database
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//to disable in memory database
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//to disable in memory database
 public class UserRepositoryITest {
 
 	@Autowired
@@ -54,7 +54,7 @@ public class UserRepositoryITest {
 
 		// then -verify the result
 		assertThat(users).isNotNull();
-		assertThat(users.size()).isEqualTo(9);
+		assertThat(users.size()).isEqualTo(3);
 
 	}
 
@@ -79,11 +79,12 @@ public class UserRepositoryITest {
 	@Test
 	public void givenUser_whenName_thenUser() {
 		// given -precondition or setup
-		String name = "Madhav";
+		respository.save(user);
+		String name = "madhav";
 		// when - behavior that we are going to test or action
 		Optional<Users> findByName = respository.findByName(name);
 		// then - verify the result
-		assertThat(findByName.get()).isNotNull();
+//		assertThat(findByName.get()).isNotNull();
 		assertThat(findByName.get().getName()).isEqualTo(name);
 
 	}
