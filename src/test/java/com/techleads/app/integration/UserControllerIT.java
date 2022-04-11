@@ -131,8 +131,8 @@ public class UserControllerIT {
 		
 		user = Users.builder()
 				.name("madhav").location("Hyderabad").build();
-		userRepository.save(user);
-		Integer id = 107;
+		Users usr = userRepository.save(user);
+		Integer id = usr.getId();
 		// when -behavior that we are going to test
 		ResultActions perform = mockMvc.perform(delete("/users/{id}", id));
 		//then
