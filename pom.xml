@@ -84,8 +84,7 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
+<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -107,6 +106,19 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<!-- exclude classes in package com.techleads.app.model whose name starts with 
+							Users -->
+						<exclude>com/techleads/app/model/Users*</exclude>
+						<!-- exclude SbRestApiCodecoverageApplication classe in package  -->
+						<exclude>com/techleads/app/SbRestApiCodecoverageApplication.class</exclude>
+						<!-- exclude classes in package com.techleads.app.controllerAdvice whose name ends with Advice -->
+						<exclude>com/techleads/app/controllerAdvice/*Advice.class</exclude>
+						<!-- exclude all classes in package com.acme.generated -->
+						<exclude>com/techleads/app/exception/**/*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<id>jacoco-initialize</id>
@@ -124,7 +136,10 @@
 				</executions>
 			</plugin>
 
+			
+
 		</plugins>
 	</build>
+	
 
 </project>

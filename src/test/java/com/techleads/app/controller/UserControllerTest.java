@@ -214,5 +214,75 @@ public class UserControllerTest {
 		.andDo(print());
 
 	}
+	////////////////
+	@DisplayName("testSaveUserResponseEntity")
+	@Test
+	public void givenUser_whenSaveUser_thenReturnUserResponseEntity() throws JsonProcessingException, Exception {
+		// given -pre condition or setup
+		
+		// when -behavior that we are going to test
+		when(userService.saveUser(any(Users.class))).thenReturn(user);
+		
+		ResultActions response = mockMvc.perform(post("/v1/users")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(user))
+				);
+		
+		
+		// then -verify the result
+		response.andDo(print()).andExpect(status().isCreated())
+
+		.andExpect(jsonPath("$.name", is(user.getName())))
+		.andExpect(jsonPath("$.location", is(user.getLocation())))
+		.andExpect(jsonPath("$.id", is(user.getId())));
+		verify(userService).saveUser(any(Users.class));
+	}
+	
+	@DisplayName("testFindAllUsersResponseEntity")
+	@Test
+	public void givenUsersList_whenFindAll_thenReturnUsersResponseEntity() throws Exception {
+		// given -precondition or setup
+		Users u1 = Users.builder().id(1002).name("Madhav").location("Hyderabad").build();
+		List<Users> users = List.of(user, u1);
+		given(userService.findAllUsers()).willReturn(users);
+		// when -behavior that we are testing or action
+		ResultActions response = mockMvc.perform(get("/v1/users"));
+		// then -verify the output
+		response.andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.size()", is(users.size())));
+	}
+	
+	@DisplayName("testFindUserByIdResponseEntity")
+	@Test
+	public void givenUserId_whenFindById_thenReturnUserResponseEntity() throws Exception {
+		// given -precondition or setup
+		Integer id = 1001;
+		given(userService.findUserById(id)).willReturn(Optional.of(user));
+		// when -behavior that we are going to test or action
+		ResultActions response = mockMvc.perform(get("/v1/users/{id}",id));
+		// then -verify the output
+		response.andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.name", is(user.getName())))
+				.andExpect(jsonPath("$.location", is(user.getLocation())))
+
+		;
+
+	}
+	
+	@Test
+	@DisplayName("updateUserByIdResponseEntity")
+	public void givenIdAndUserObj_whenUpdateUserById_thenReturnResultResponseEntity() throws JsonProcessingException, Exception {
+		// given -pre condition or setup
+		Integer id = 1001;
+//		given(userService.updateUserById(user, id)).willReturn("User is Updated successfully with Id: " + id);
+		when(userService.updateUserById(any(Users.class), any(Integer.class))).thenReturn("User is Updated successfully with Id: " + id);
+
+		// when -behavior that we are going to test
+		ResultActions response = mockMvc.perform(put("/v1/users/{id}", id).contentType(MediaType.APPLICATION_JSON)
+		.content(objectMapper.writeValueAsString(user)));
+		response.andDo(print()).andExpect(status().isOk());
+		MvcResult andReturn = response.andReturn();
+		System.out.println("{}:::"+andReturn.getResponse().getContentAsString());
+		verify(userService, times(1)).updateUserById(any(Users.class), any(Integer.class));
+	}
+	
 
 }
