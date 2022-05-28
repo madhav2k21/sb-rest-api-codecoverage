@@ -56,7 +56,7 @@ public class UserService {
 	
 	
 	public List<Users> findAllByOrderByCreatedDateTimeAndUpdatedDateTime() {
-		return userRepository.findAllByOrderByCreatedDateTimeDescUpdatedDateTimeDesc();
+		return userRepository.findAllByOrderByCreatedDateTimeAscUpdatedDateTimeAsc();
 		
 	}
 
