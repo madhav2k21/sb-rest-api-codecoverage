@@ -2,6 +2,7 @@ package com.techleads.app.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,13 @@ public class UserRepositoryITest {
 		respository.save(u2);
 		respository.save(u3);
 		// when -action or behavior that we are going to test
-		List<Users> users = respository.findAll();
+//		List<Users> users = respository.findAll();
+		
+		List<Users> users =new ArrayList<>();
+		Iterable<Users> findAll = respository.findAll();
+		findAll.forEach(usr-> {
+			users.add(usr);
+		});
 
 		// then -verify the result
 		assertThat(users).isNotNull();

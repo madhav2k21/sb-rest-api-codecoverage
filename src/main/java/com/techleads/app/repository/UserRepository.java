@@ -1,5 +1,6 @@
 package com.techleads.app.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +24,8 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	
 	@Query(value = "select u.id, u.name, u.location from users u where u.name =:name and u.location =:location", nativeQuery = true)
 	Users findByNativeQueryNamedParam(@Param("name") String name, @Param("location") String location);
+	
+	List<Users> findAllByOrderByCreatedDateTimeDescUpdatedDateTimeDesc();
+//	List<Person> findByLastnameOrderByFirstnameDesc(String lastname);
 
 }

@@ -25,3 +25,7 @@ spring:
     show-sql: true
   main:
     banner-mode: 'off'
+    
+user:
+  createddte: createdDateTime
+  updateddte: updatedDateTime

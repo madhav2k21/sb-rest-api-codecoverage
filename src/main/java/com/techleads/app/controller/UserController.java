@@ -30,6 +30,23 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	@GetMapping(value = "/users/field/{field}")
+	public ResponseEntity<List<Users>> findUserByField(@PathVariable("field") String field) {
+		logger.info("Inside findUserByField in UserController");
+
+		List<Users> findProductsWithSorting = userService.findProductsWithSorting(field);
+		return new ResponseEntity<>(findProductsWithSorting, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/users/sorting")
+	public ResponseEntity<List<Users>> findUserByOrderByCreatedAndUpdated() {
+		logger.info("Inside findUserByField in UserController");
+
+		List<Users> findProductsWithSorting = userService.findAllByOrderByCreatedDateTimeAndUpdatedDateTime();
+		return new ResponseEntity<>(findProductsWithSorting, HttpStatus.OK);
+//		return null;
+	}
+
 	// http://localhost:8082/users/101
 	@GetMapping(value = "/users/{id}")
 	public ResponseEntity<Users> findUserById(@PathVariable("id") Integer id) {

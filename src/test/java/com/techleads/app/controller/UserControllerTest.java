@@ -76,7 +76,11 @@ public class UserControllerTest {
 		.andExpect(jsonPath("$.id", is(user.getId())));
 		verify(userService).saveUser(any(Users.class));
 	}
+
 	
+	
+	public void testMethod() {
+	}
 	@Test
 	@DisplayName("updateUserById_fixed")
 	public void givenIdAndUserObj_whenUpdateUserById_thenReturnResult() throws JsonProcessingException, Exception {
