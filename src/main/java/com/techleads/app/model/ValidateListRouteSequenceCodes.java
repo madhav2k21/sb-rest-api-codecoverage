@@ -18,12 +18,12 @@ import javax.validation.Payload;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = ValidateListEmptyStatusCodeValues.class)
-public @interface ValidateListEmptyStatusCodes {
+@Constraint(validatedBy = ValidateListRoutesSequenceCodeValues.class)
+public @interface ValidateListRouteSequenceCodes {
 
 //	Class<? extends Enum<?>> enumClass();
 
-	String message() default "LIST: status code must be of ma/tj/dj";
+	String message() default "Route :LIST: status code must be of A/B/C";
 
 	Class<?>[] groups() default {};
 

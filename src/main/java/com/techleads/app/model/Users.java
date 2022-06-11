@@ -41,7 +41,9 @@ public class Users {
 	@Transient
 	@ValidateListEmptyStatusCodes()
 	private List<String> loadEmptyStatusCodes;
-	
+	@Transient
+	@ValidateListRouteSequenceCodes()
+	private List<Route> routes;
 	
 	@CreationTimestamp
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss", timezone = "Asia/Kolkata" )
