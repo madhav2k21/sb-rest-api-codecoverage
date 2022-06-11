@@ -2,6 +2,8 @@ package com.techleads.app.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +67,7 @@ public class UserController {
 
 	@PostMapping(value = "/users")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Users saveUser(@RequestBody Users user) {
+	public Users saveUser(@Valid @RequestBody Users user) {
 		logger.info("Inside saveUser in UserController");
 		user = userService.saveUser(user);
 		logger.info("Exiting from saveUser in UserController");

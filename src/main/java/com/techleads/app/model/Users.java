@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,6 +33,11 @@ public class Users {
 	private Integer id;
 	private String name;
 	private String location;
+	
+	@ValidateEmptyStatusCode()
+	@Transient
+	private String loadEmptyStatusCode;
+	
 	
 	@CreationTimestamp
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss", timezone = "Asia/Kolkata" )
