@@ -1,6 +1,7 @@
 package com.techleads.app.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,9 @@ public class Users {
 	@ValidateEmptyStatusCode()
 	@Transient
 	private String loadEmptyStatusCode;
+	@Transient
+	@ValidateListEmptyStatusCodes()
+	private List<String> loadEmptyStatusCodes;
 	
 	
 	@CreationTimestamp

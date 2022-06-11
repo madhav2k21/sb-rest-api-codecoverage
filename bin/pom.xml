@@ -70,6 +70,10 @@
 			<artifactId>junit-platform-runner</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 
 		<!-- <dependency> <groupId>org.junit.platform</groupId> <artifactId>junit-platform-suite-engine</artifactId> 
 			</dependency> -->
@@ -84,7 +88,7 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-<build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -108,12 +112,13 @@
 				<version>0.8.5</version>
 				<configuration>
 					<excludes>
-						<!-- exclude classes in package com.techleads.app.model whose name starts with 
-							Users -->
+						<!-- exclude classes in package com.techleads.app.model whose name 
+							starts with Users -->
 						<exclude>com/techleads/app/model/Users*</exclude>
-						<!-- exclude SbRestApiCodecoverageApplication classe in package  -->
+						<!-- exclude SbRestApiCodecoverageApplication classe in package -->
 						<exclude>com/techleads/app/SbRestApiCodecoverageApplication.class</exclude>
-						<!-- exclude classes in package com.techleads.app.controllerAdvice whose name ends with Advice -->
+						<!-- exclude classes in package com.techleads.app.controllerAdvice 
+							whose name ends with Advice -->
 						<exclude>com/techleads/app/controllerAdvice/*Advice.class</exclude>
 						<!-- exclude all classes in package com.acme.generated -->
 						<exclude>com/techleads/app/exception/**/*</exclude>
@@ -136,10 +141,10 @@
 				</executions>
 			</plugin>
 
-			
+
 
 		</plugins>
 	</build>
-	
+
 
 </project>
